@@ -12,10 +12,6 @@ fe = open("editor.txt", "w")
 #fe.write(fo)
 for l in fr:
     #print(l, end="")   
-    rt=l.replace("    ", tags[5])
-    fe.write(rt)
-for l in fr:
-    #print(l, end="")   
     rt=l.replace("    ", tags[5])    
     fe.write(rt)
     rn=l.join([l.strip() + tags[4]])
