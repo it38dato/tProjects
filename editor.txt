@@ -1,12 +1,13 @@
-$ cat settings.py
-$ cat settings.py</br>...
-...</br>DATABASES = {
-DATABASES = {</br>&nbsp'default': {
-'default': {</br>&nbsp&nbsp#'ENGINE': 'django.db.backends.sqlite3',
-#'ENGINE': 'django.db.backends.sqlite3',</br>&nbsp&nbsp#'NAME': BASE_DIR / 'db.sqlite3',
-#'NAME': BASE_DIR / 'db.sqlite3',</br>&nbsp&nbsp'ENGINE': 'django.db.backends.postgresql_psycopg2',
-'ENGINE': 'django.db.backends.postgresql_psycopg2',</br>&nbsp&nbsp'PORT': '5432',
-'PORT': '5432',</br>&nbsp}
-}</br>}
-}</br>...
+<p>
+$ cat settings.py</br>
 ...</br>
+DATABASES = {</br>
+&nbsp'default': {</br>
+&nbsp&nbsp#'ENGINE': 'django.db.backends.sqlite3',</br>
+&nbsp&nbsp#'NAME': BASE_DIR / 'db.sqlite3',</br>
+&nbsp&nbsp'ENGINE': 'django.db.backends.postgresql_psycopg2',</br>
+&nbsp&nbsp'PORT': '5432',</br>
+&nbsp}</br>
+}</br>
+...</br>
+</p>
