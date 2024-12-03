@@ -1,44 +1,45 @@
-1ая таблица
-       newbs longitudeX1 latitudeY1
-0     IR021  105.98790  52.78068
-1     IR048  102.19558  53.17582
-2     IR066  105.48000  54.04308
+How to solve the problem?
+There is a dataframe:
 
-2ая таблица
-   oldbs       longitudeX2        latitudeY2     BSC   LAC
-  IR055   104.2578286633  52.255474988944  396402  5244
-  IR107  104.29863944009  52.284744395507  396402  5244
-   ...               ...               ...     ...   ...
-  IR294  103.84349640892  52.574271985462  401257  5272
-  IR295  105.57618886914  54.095100603944  401257  5251
-  IR299  103.77831487935  52.420066254791  401257  5259
-  IR290  103.82418234894   52.09637656718  401257  5272
-  IR291  103.85440774559  52.517154218339  401257  5272
-
-Формула
-евлидово расстояние - sqrt((x1-x2) * (x1-x2) + (y1-y2) * (y1-y2))
-а затем поиск наименьшего из них
-
-таблица результат (для примера подтянул IR055, IR299, IR290. Это не корректные данные. это может и IR107 и IR291, главное чтобы он удовлетворял поиску наименьшего числа)
-      newbs longitudeX1 latitudeY1   oldbs      longitudeX2       latitudeY2     BSC   LAC
-0     IR021  105.98790  52.78068     IR055   104.2578286633  52.255474988944  396402  5244
-1     IR048  102.19558  53.17582     IR299  103.77831487935  52.420066254791  401257  5259
-2     IR066  105.48000  54.04308     IR290  103.82418234894   52.09637656718  401257  5272
-
-Пробное соеднинение
-       newbs longitudeX1 latitudeY1   oldbs       longitudeX2        latitudeY2     BSC   LAC
-0     IR021  105.98790  52.78068     NaN               NaN               NaN     NaN   NaN
-1     IR048  102.19558  53.17582     NaN               NaN               NaN     NaN   NaN
-2     IR066  105.48000  54.04308     NaN               NaN               NaN     NaN   NaN
-0        NaN         NaN        NaN  IR055   104.2578286633  52.255474988944  396402  5244
-1        NaN         NaN        NaN  IR107  104.29863944009  52.284744395507  396402  5244
+       newbs longitudeY1 latitudeX1   oldbs       longitudeY2        latitudeX2     BSC   LAC
+0     IR021  105.98790  52.78068  IR0505   104.2578286633  52.655474988944  396402  5244
+1     IR021  105.98790  52.78068  IR1017  104.59863944009  52.384744395507  396402  5244
+2     IR021  105.98790  52.78068  IR1020  104.14058703968  52.010800749578  396402  5307
+3     IR021  105.98790  52.78068  IR1023  104.15358510877  52.719410098781  396402  5319
+4     IR021  105.98790  52.78068  IR1030  104.20639053885  52.573995078092  396402  5244
 ...      ...         ...        ...     ...               ...               ...     ...   ...
-1394     NaN         NaN        NaN  IR294  103.84349640892  52.574271985462  401257  5272
-1395     NaN         NaN        NaN  IR295  105.57618886914  54.095100603944  401257  5251
-1396     NaN         NaN        NaN  IR299  103.77831487935  52.420066254791  401257  5259
-1397     NaN         NaN        NaN  IR290  103.82418234894   52.09637656718  401257  5272
-1398     NaN         NaN        NaN  IR291  103.85440774559  52.517154218339  401257  5272
+4192  IR066  105.68000  54.34308  IR2964  103.24349640892  52.974271985462  401257  5272
+4193  IR066  105.68000  54.34308  IR2965  105.67618886914  54.995100603944  401257  5251
+4194  IR066  105.68000  54.34308  IR2969  103.47831487935  52.720066254791  401257  5259
+4195  IR066  105.68000  54.34308  IR2970  103.72418234894   52.09637656718  401257  5272
+4196  IR066  105.68000  54.34308  IR2981  103.85440774559  52.517154218339  401257  5272
 
-Вопрос:
-Как мне получить таблицу результат из первой и второй таблиц, используя формулу?
-В таблице Пробное соединение я пробовал соединить таблицы. Думал, что проще потом обработать столбцы в одной таблице.
+I am trying to apply the formula in the table:
+sqrt((x1-x2) * (x1-x2) + (y1-y2) * (y1-y2))
+But my code gives me an error:
+
+Traceback (most recent call last):
+  File "P:\projects\FillingInDataForTheSite\py.py", line 308, in <module>
+    newNeighbourTable["distance"] = math.sqrt((x1-x2) * (x1-x2) + (y1-y2) * (y1-y2))        
+  File "C:\Users\david\AppData\Roaming\Python\Python310\site-packages\pandas\core\series.py", line 248, in wrapper
+    raise TypeError(f"cannot convert the series to {converter}")
+TypeError: cannot convert the series to <class 'float'>
+
+Here is my code:
+
+        newNeighbourTable = newdatatable.merge(olddatatable, how='cross')        
+        x1=newNeighbourTable["latitudeX1"].astype(float)
+        x2=newNeighbourTable["latitudeX2"].astype(float)
+        y1=newNeighbourTable["longitudeY1"].astype(float)
+        y2=newNeighbourTable["longitudeY2"].astype(float)
+        #newNeighbourTable["distance"] = ""
+        newNeighbourTable["distance"] = math.sqrt((x1-x2) * (x1-x2) + (y1-y2) * (y1-y2))        
+        #for i, row in newNeighbourTable.iterrows():
+        #    print(ewNeighbourTable.loc[i])
+            #df_index = newNeighbourTable.loc[i]
+            #results = math.sqrt((x1-x2) * (x1-x2) + (y1-y2) * (y1-y2))
+            #newNeighbourTable["distance"] = results
+        print(newNeighbourTable)
+        print(newNeighbourTable.dtypes)
+
+In the comments, these are my attempts to solve the problem.
