@@ -1,45 +1,34 @@
-How to solve the problem?
-There is a dataframe:
+Как найти строку во всех таблицах базы?
+Я вывел список баз таким образом:
 
-       newbs longitudeY1 latitudeX1   oldbs       longitudeY2        latitudeX2     BSC   LAC
-0     IR021  105.98790  52.78068  IR0505   104.2578286633  52.655474988944  396402  5244
-1     IR021  105.98790  52.78068  IR1017  104.59863944009  52.384744395507  396402  5244
-2     IR021  105.98790  52.78068  IR1020  104.14058703968  52.010800749578  396402  5307
-3     IR021  105.98790  52.78068  IR1023  104.15358510877  52.719410098781  396402  5319
-4     IR021  105.98790  52.78068  IR1030  104.20639053885  52.573995078092  396402  5244
-...      ...         ...        ...     ...               ...               ...     ...   ...
-4192  IR066  105.68000  54.34308  IR2964  103.24349640892  52.974271985462  401257  5272
-4193  IR066  105.68000  54.34308  IR2965  105.67618886914  54.995100603944  401257  5251
-4194  IR066  105.68000  54.34308  IR2969  103.47831487935  52.720066254791  401257  5259
-4195  IR066  105.68000  54.34308  IR2970  103.72418234894   52.09637656718  401257  5272
-4196  IR066  105.68000  54.34308  IR2981  103.85440774559  52.517154218339  401257  5272
-
-I am trying to apply the formula in the table:
-sqrt((x1-x2) * (x1-x2) + (y1-y2) * (y1-y2))
-But my code gives me an error:
-
-Traceback (most recent call last):
-  File "P:\projects\FillingInDataForTheSite\py.py", line 308, in <module>
-    newNeighbourTable["distance"] = math.sqrt((x1-x2) * (x1-x2) + (y1-y2) * (y1-y2))        
-  File "C:\Users\david\AppData\Roaming\Python\Python310\site-packages\pandas\core\series.py", line 248, in wrapper
-    raise TypeError(f"cannot convert the series to {converter}")
-TypeError: cannot convert the series to <class 'float'>
-
-Here is my code:
-
-        newNeighbourTable = newdatatable.merge(olddatatable, how='cross')        
-        x1=newNeighbourTable["latitudeX1"].astype(float)
-        x2=newNeighbourTable["latitudeX2"].astype(float)
-        y1=newNeighbourTable["longitudeY1"].astype(float)
-        y2=newNeighbourTable["longitudeY2"].astype(float)
-        #newNeighbourTable["distance"] = ""
-        newNeighbourTable["distance"] = math.sqrt((x1-x2) * (x1-x2) + (y1-y2) * (y1-y2))        
-        #for i, row in newNeighbourTable.iterrows():
-        #    print(ewNeighbourTable.loc[i])
-            #df_index = newNeighbourTable.loc[i]
-            #results = math.sqrt((x1-x2) * (x1-x2) + (y1-y2) * (y1-y2))
-            #newNeighbourTable["distance"] = results
-        print(newNeighbourTable)
-        print(newNeighbourTable.dtypes)
-
-In the comments, these are my attempts to solve the problem.
+        with open("output.log", "a") as outfile:
+                outfile.write("... Подключаюсь к БД."+"\n")
+        try: 
+            mydb = mysql.connector.connect(
+                host="IP",
+                user="USER",
+                password="DB",
+            )
+            with open("output.log", "a") as outfile:
+                    outfile.write("+ Успешное подключение к БД."+"\n")
+        except mysqldb.Error as e: 
+            print(f"Error connecting to MYSQL Platform: {e}") 
+            with open("output.log", "a") as outfile:
+                outfile.write(f"- Error connecting to MYSQL Platform: {e}\n")
+            sys.exit(1)
+        mycursor = mydb.cursor()
+        listdbs = []
+        querrydb = ("SHOW DATABASES")
+        mycursor.execute(querrydb)
+        for querrydb in mycursor:
+            #print(querrydb[0])
+            listdbs.append(querrydb[0])
+        with open("output.log", "a") as outfile:
+            outfile.write("+ Отображаю список БД."+"\n")
+        print("Что хотите найти: ")
+        choiceword = input()
+        with open("output.log", "a") as outfile:
+            outfile.write("+ Поиск слов: "+choiceword+"\n")
+        for db in listdbs:
+            print(db)
+как мне в выбранной базе найти строку или число во всех таблицах через python? пусть они будут повторяться
