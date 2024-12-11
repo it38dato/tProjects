@@ -32,3 +32,6 @@
         for db in listdbs:
             print(db)
 как мне в выбранной базе найти строку или число во всех таблицах через python? пусть они будут повторяться
+
+
+mysql.connector.errors.DatabaseError: 1267 (HY000): Illegal mix of collations (utf8mb4_unicode_ci,COERCIBLE) and (utf8mb4_general_ci,COERCIBLE) for operation 'like'
