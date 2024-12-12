@@ -1,13 +1,11 @@
-Как найти строку во всех таблицах базы?
-Я вывел список баз таким образом:
-
         with open("output.log", "a") as outfile:
                 outfile.write("... Подключаюсь к БД."+"\n")
         try: 
             mydb = mysql.connector.connect(
                 host="IP",
                 user="USER",
-                password="DB",
+                password="PASSWORD",
+                database="DB"
             )
             with open("output.log", "a") as outfile:
                     outfile.write("+ Успешное подключение к БД."+"\n")
@@ -17,21 +15,25 @@
                 outfile.write(f"- Error connecting to MYSQL Platform: {e}\n")
             sys.exit(1)
         mycursor = mydb.cursor()
-        listdbs = []
-        querrydb = ("SHOW DATABASES")
-        mycursor.execute(querrydb)
-        for querrydb in mycursor:
-            #print(querrydb[0])
-            listdbs.append(querrydb[0])
-        with open("output.log", "a") as outfile:
-            outfile.write("+ Отображаю список БД."+"\n")
-        print("Что хотите найти: ")
-        choiceword = input()
-        with open("output.log", "a") as outfile:
-            outfile.write("+ Поиск слов: "+choiceword+"\n")
-        for db in listdbs:
-            print(db)
-как мне в выбранной базе найти строку или число во всех таблицах через python? пусть они будут повторяться
-
-
-mysql.connector.errors.DatabaseError: 1267 (HY000): Illegal mix of collations (utf8mb4_unicode_ci,COERCIBLE) and (utf8mb4_general_ci,COERCIBLE) for operation 'like'
+        querrytbs = "SHOW TABLES FROM DB"
+        #print(querrytbs) 
+        mycursor.execute(querrytbs)
+        listtbs = []
+        for tb in mycursor:
+            #print(tb[0])
+            listtbs.append(tb[0])
+        print(listtbs)
+        for tb in listtbs:
+            #print(tb)
+            try:
+                querrysel = "SELECT * FROM DB."+tb+" WHERE BS_name='IO0129'"
+                print(querrysel)
+                mycursor.execute(querrysel)
+                result = mycursor.fetchall()
+                for row in result:
+                    print(row)
+            except mysql.connector.errors.ProgrammingError:
+                #print("НЕТУ данной ячейки в такой таблице")
+                continue
+            except mysql.connector.errors.DatabaseError:
+                print("ЗАпрещено"
