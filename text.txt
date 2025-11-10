@@ -1,336 +1,111 @@
-root@thost:~# /var/www/thost/pyenv/bin/python -c 'import dotenv'
+Как решить проблему в python?
+
 Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-ModuleNotFoundError: No module named 'dotenv'
-root@thost:~# source /var/www/thost/pyenv/bin/activate
-(pyenv) root@thost:~# /var/www/thost/pyenv/bin/python -c 'import dotenv'
-Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-ModuleNotFoundError: No module named 'dotenv'
-(pyenv) root@thost:~# pip list | grep dotenv
-python-dotenv       1.0.1
-(pyenv) root@thost:~# cat /var/log/apache2/dato138it.ru_error.log
-[Wed Jul 24 21:01:33.192366 2024] [wsgi:error] [pid 15774] [remote 94.156.71.207:34980] Not Found: /_profiler/phpinfo
-[Wed Jul 24 21:18:46.238622 2024] [wsgi:error] [pid 15774] [remote 91.239.208.91:62350] Not Found: /wp-includes/wlwmanifest.xml
-[Wed Jul 24 21:18:46.293437 2024] [wsgi:error] [pid 15774] [remote 91.239.208.91:62350] Not Found: /xmlrpc.php
-[Wed Jul 24 21:18:46.462857 2024] [wsgi:error] [pid 15774] [remote 91.239.208.91:62350] Not Found: /blog/wp-includes/wlwmanifest.xml
-[Wed Jul 24 21:18:46.517526 2024] [wsgi:error] [pid 15774] [remote 91.239.208.91:62350] Not Found: /web/wp-includes/wlwmanifest.xml
-[Wed Jul 24 21:18:46.571768 2024] [wsgi:error] [pid 15774] [remote 91.239.208.91:62350] Not Found: /wordpress/wp-includes/wlwmanifest.xml
-[Wed Jul 24 21:18:46.642974 2024] [wsgi:error] [pid 15774] [remote 91.239.208.91:62350] Not Found: /website/wp-includes/wlwmanifest.xml
-[Wed Jul 24 21:18:46.696603 2024] [wsgi:error] [pid 15774] [remote 91.239.208.91:62350] Not Found: /wp/wp-includes/wlwmanifest.xml
-[Wed Jul 24 21:18:46.750995 2024] [wsgi:error] [pid 15774] [remote 91.239.208.91:62350] Not Found: /news/wp-includes/wlwmanifest.xml
-[Wed Jul 24 21:18:46.830655 2024] [wsgi:error] [pid 15774] [remote 91.239.208.91:62350] Not Found: /2018/wp-includes/wlwmanifest.xml
-[Wed Jul 24 21:18:46.886021 2024] [wsgi:error] [pid 15774] [remote 91.239.208.91:62350] Not Found: /2019/wp-includes/wlwmanifest.xml
-[Wed Jul 24 21:18:46.942590 2024] [wsgi:error] [pid 15774] [remote 91.239.208.91:62350] Not Found: /shop/wp-includes/wlwmanifest.xml
-[Wed Jul 24 21:18:46.997436 2024] [wsgi:error] [pid 15774] [remote 91.239.208.91:62350] Not Found: /wp1/wp-includes/wlwmanifest.xml
-[Wed Jul 24 21:18:47.051075 2024] [wsgi:error] [pid 15774] [remote 91.239.208.91:62350] Not Found: /test/wp-includes/wlwmanifest.xml
-[Wed Jul 24 21:18:47.153400 2024] [wsgi:error] [pid 15774] [remote 91.239.208.91:62350] Not Found: /wp2/wp-includes/wlwmanifest.xml
-[Wed Jul 24 21:18:47.206884 2024] [wsgi:error] [pid 15774] [remote 91.239.208.91:62350] Not Found: /site/wp-includes/wlwmanifest.xml
-[Wed Jul 24 21:18:47.267283 2024] [wsgi:error] [pid 15774] [remote 91.239.208.91:62350] Not Found: /cms/wp-includes/wlwmanifest.xml
-[Wed Jul 24 21:18:47.320597 2024] [wsgi:error] [pid 15774] [remote 91.239.208.91:62350] Not Found: /sito/wp-includes/wlwmanifest.xml
-[Wed Jul 24 22:03:34.990316 2024] [wsgi:error] [pid 15774] [remote 84.54.51.37:35594] Not Found: /cgi-bin/luci/;stok=/locale
-[Wed Jul 24 22:08:35.547510 2024] [wsgi:error] [pid 15774] [remote 167.172.172.183:35374] Invalid HTTP_HOST header: '207.154.205.99'. You may need to add '207.154.205.99' to ALLOWED_HOSTS.
-[Wed Jul 24 22:08:35.547570 2024] [wsgi:error] [pid 15774] [remote 167.172.172.183:35374] Traceback (most recent call last):
-[Wed Jul 24 22:08:35.547574 2024] [wsgi:error] [pid 15774] [remote 167.172.172.183:35374]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
-[Wed Jul 24 22:08:35.547576 2024] [wsgi:error] [pid 15774] [remote 167.172.172.183:35374]     response = get_response(request)
-[Wed Jul 24 22:08:35.547579 2024] [wsgi:error] [pid 15774] [remote 167.172.172.183:35374]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
-[Wed Jul 24 22:08:35.547582 2024] [wsgi:error] [pid 15774] [remote 167.172.172.183:35374]     response = self.process_request(request)
-[Wed Jul 24 22:08:35.547584 2024] [wsgi:error] [pid 15774] [remote 167.172.172.183:35374]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
-[Wed Jul 24 22:08:35.547587 2024] [wsgi:error] [pid 15774] [remote 167.172.172.183:35374]     host = request.get_host()
-[Wed Jul 24 22:08:35.547589 2024] [wsgi:error] [pid 15774] [remote 167.172.172.183:35374]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/http/request.py", line 151, in get_host
-[Wed Jul 24 22:08:35.547635 2024] [wsgi:error] [pid 15774] [remote 167.172.172.183:35374]     raise DisallowedHost(msg)
-[Wed Jul 24 22:08:35.547650 2024] [wsgi:error] [pid 15774] [remote 167.172.172.183:35374] django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '207.154.205.99'. You may need to add '207.154.205.99' to ALLOWED_HOSTS.
-[Wed Jul 24 22:08:35.578679 2024] [wsgi:error] [pid 15774] [remote 167.172.172.183:35374] Bad Request: /
-[Wed Jul 24 22:27:32.744057 2024] [wsgi:error] [pid 15774] [remote 207.231.105.76:21109] Not Found: /.env
-[Wed Jul 24 22:27:33.090921 2024] [wsgi:error] [pid 15774] [remote 207.231.105.76:21122] Forbidden (CSRF cookie not set.): /
-[Wed Jul 24 22:53:17.456409 2024] [wsgi:error] [pid 15774] [remote 213.180.203.17:49950] Invalid HTTP_HOST header: 'lgpage.ru'. You may need to add 'lgpage.ru' to ALLOWED_HOSTS.     
-[Wed Jul 24 22:53:17.456486 2024] [wsgi:error] [pid 15774] [remote 213.180.203.17:49950] Traceback (most recent call last):
-[Wed Jul 24 22:53:17.456491 2024] [wsgi:error] [pid 15774] [remote 213.180.203.17:49950]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
-[Wed Jul 24 22:53:17.456495 2024] [wsgi:error] [pid 15774] [remote 213.180.203.17:49950]     response = get_response(request)
-[Wed Jul 24 22:53:17.456498 2024] [wsgi:error] [pid 15774] [remote 213.180.203.17:49950]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
-[Wed Jul 24 22:53:17.456501 2024] [wsgi:error] [pid 15774] [remote 213.180.203.17:49950]     response = self.process_request(request)
-[Wed Jul 24 22:53:17.456504 2024] [wsgi:error] [pid 15774] [remote 213.180.203.17:49950]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
-[Wed Jul 24 22:53:17.456508 2024] [wsgi:error] [pid 15774] [remote 213.180.203.17:49950]     host = request.get_host()
-[Wed Jul 24 22:53:17.456510 2024] [wsgi:error] [pid 15774] [remote 213.180.203.17:49950]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/http/request.py", line 151, in get_host
-[Wed Jul 24 22:53:17.456513 2024] [wsgi:error] [pid 15774] [remote 213.180.203.17:49950]     raise DisallowedHost(msg)
-[Wed Jul 24 22:53:17.456516 2024] [wsgi:error] [pid 15774] [remote 213.180.203.17:49950] django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'lgpage.ru'. You may need to add 'lgpage.ru' to ALLOWED_HOSTS.
-[Wed Jul 24 22:53:17.526445 2024] [wsgi:error] [pid 15774] [remote 213.180.203.17:49950] Bad Request: /robots.txt
-[Wed Jul 24 22:53:17.904994 2024] [wsgi:error] [pid 15774] [remote 213.180.203.38:55262] Invalid HTTP_HOST header: 'lgpage.ru'. You may need to add 'lgpage.ru' to ALLOWED_HOSTS.     
-[Wed Jul 24 22:53:17.905036 2024] [wsgi:error] [pid 15774] [remote 213.180.203.38:55262] Traceback (most recent call last):
-[Wed Jul 24 22:53:17.905041 2024] [wsgi:error] [pid 15774] [remote 213.180.203.38:55262]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
-[Wed Jul 24 22:53:17.905044 2024] [wsgi:error] [pid 15774] [remote 213.180.203.38:55262]     response = get_response(request)
-[Wed Jul 24 22:53:17.905047 2024] [wsgi:error] [pid 15774] [remote 213.180.203.38:55262]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
-[Wed Jul 24 22:53:17.905051 2024] [wsgi:error] [pid 15774] [remote 213.180.203.38:55262]     response = self.process_request(request)
-[Wed Jul 24 22:53:17.905054 2024] [wsgi:error] [pid 15774] [remote 213.180.203.38:55262]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
-[Wed Jul 24 22:53:17.905058 2024] [wsgi:error] [pid 15774] [remote 213.180.203.38:55262]     host = request.get_host()
-[Wed Jul 24 22:53:17.905061 2024] [wsgi:error] [pid 15774] [remote 213.180.203.38:55262]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/http/request.py", line 151, in get_host
-[Wed Jul 24 22:53:17.905065 2024] [wsgi:error] [pid 15774] [remote 213.180.203.38:55262]     raise DisallowedHost(msg)
-[Wed Jul 24 22:53:17.905095 2024] [wsgi:error] [pid 15774] [remote 213.180.203.38:55262] django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'lgpage.ru'. You may need to add 'lgpage.ru' to ALLOWED_HOSTS.
-[Wed Jul 24 22:53:17.953290 2024] [wsgi:error] [pid 15774] [remote 213.180.203.38:55262] Bad Request: /
-[Thu Jul 25 00:02:06.586431 2024] [wsgi:error] [pid 15774] [remote 37.114.41.189:53821] Not Found: /.env
-[Thu Jul 25 00:02:45.902624 2024] [wsgi:error] [pid 15774] [remote 206.168.32.105:33596] Not Found: /favicon.ico
-[Thu Jul 25 00:06:14.977368 2024] [wsgi:error] [pid 15774] [remote 207.167.66.186:41862] Invalid HTTP_HOST header: 'www.google.com:443'. You may need to add 'www.google.com' to ALLOWED_HOSTS.
-[Thu Jul 25 00:06:14.977431 2024] [wsgi:error] [pid 15774] [remote 207.167.66.186:41862] Traceback (most recent call last):
-[Thu Jul 25 00:06:14.977434 2024] [wsgi:error] [pid 15774] [remote 207.167.66.186:41862]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
-[Thu Jul 25 00:06:14.977436 2024] [wsgi:error] [pid 15774] [remote 207.167.66.186:41862]     response = get_response(request)
-[Thu Jul 25 00:06:14.977439 2024] [wsgi:error] [pid 15774] [remote 207.167.66.186:41862]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
-[Thu Jul 25 00:06:14.977441 2024] [wsgi:error] [pid 15774] [remote 207.167.66.186:41862]     response = self.process_request(request)
-[Thu Jul 25 00:06:14.977444 2024] [wsgi:error] [pid 15774] [remote 207.167.66.186:41862]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
-[Thu Jul 25 00:06:14.977446 2024] [wsgi:error] [pid 15774] [remote 207.167.66.186:41862]     host = request.get_host()
-[Thu Jul 25 00:06:14.977448 2024] [wsgi:error] [pid 15774] [remote 207.167.66.186:41862]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/http/request.py", line 151, in get_host
-[Thu Jul 25 00:06:14.977450 2024] [wsgi:error] [pid 15774] [remote 207.167.66.186:41862]     raise DisallowedHost(msg)
-[Thu Jul 25 00:06:14.977453 2024] [wsgi:error] [pid 15774] [remote 207.167.66.186:41862] django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'www.google.com:443'. You may need to add 'www.google.com' to ALLOWED_HOSTS.
-[Thu Jul 25 00:06:15.008170 2024] [wsgi:error] [pid 15774] [remote 207.167.66.186:41862] Bad Request: /
-[Thu Jul 25 01:54:17.484885 2024] [wsgi:error] [pid 15774] [remote 84.54.51.37:41656] Not Found: /cgi-bin/luci/;stok=/locale
-[Thu Jul 25 02:01:34.308424 2024] [wsgi:error] [pid 15774] [remote 185.159.130.18:43584] Invalid HTTP_HOST header: 'lgpage.ru'. You may need to add 'lgpage.ru' to ALLOWED_HOSTS.     
-[Thu Jul 25 02:01:34.308465 2024] [wsgi:error] [pid 15774] [remote 185.159.130.18:43584] Traceback (most recent call last):
-[Thu Jul 25 02:01:34.308469 2024] [wsgi:error] [pid 15774] [remote 185.159.130.18:43584]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
-[Thu Jul 25 02:01:34.308472 2024] [wsgi:error] [pid 15774] [remote 185.159.130.18:43584]     response = get_response(request)
-[Thu Jul 25 02:01:34.308475 2024] [wsgi:error] [pid 15774] [remote 185.159.130.18:43584]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
-[Thu Jul 25 02:01:34.308479 2024] [wsgi:error] [pid 15774] [remote 185.159.130.18:43584]     response = self.process_request(request)
-[Thu Jul 25 02:01:34.308489 2024] [wsgi:error] [pid 15774] [remote 185.159.130.18:43584]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
-[Thu Jul 25 02:01:34.308493 2024] [wsgi:error] [pid 15774] [remote 185.159.130.18:43584]     host = request.get_host()
-[Thu Jul 25 02:01:34.308496 2024] [wsgi:error] [pid 15774] [remote 185.159.130.18:43584]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/http/request.py", line 151, in get_host
-[Thu Jul 25 02:01:34.308514 2024] [wsgi:error] [pid 15774] [remote 185.159.130.18:43584]     raise DisallowedHost(msg)
-[Thu Jul 25 02:01:34.308517 2024] [wsgi:error] [pid 15774] [remote 185.159.130.18:43584] django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'lgpage.ru'. You may need to add 'lgpage.ru' to ALLOWED_HOSTS.
-[Thu Jul 25 02:01:34.341873 2024] [wsgi:error] [pid 15774] [remote 185.159.130.18:43584] Bad Request: /
-[Thu Jul 25 02:07:22.533714 2024] [wsgi:error] [pid 15774] [remote 103.14.26.206:33480] Not Found: /restore.php
-[Thu Jul 25 02:58:18.765237 2024] [wsgi:error] [pid 15774] [remote 216.244.66.231:40806] Not Found: /robots.txt
-[Thu Jul 25 03:07:18.538634 2024] [wsgi:error] [pid 15774] [remote 47.128.56.75:20168] Not Found: /robots.txt
-[Thu Jul 25 03:11:20.225614 2024] [wsgi:error] [pid 15774] [remote 73.245.17.14:49442] Not Found: /robots.txt
-[Thu Jul 25 03:15:21.883099 2024] [wsgi:error] [pid 15774] [remote 47.128.49.160:20266] Not Found: /robots.txt
-[Thu Jul 25 03:19:23.096870 2024] [wsgi:error] [pid 15774] [remote 73.45.139.180:22685] Not Found: /robots.txt
-[Thu Jul 25 03:53:18.768083 2024] [wsgi:error] [pid 15774] [remote 94.156.71.207:52566] Not Found: /.git/config
-[Thu Jul 25 05:46:35.973396 2024] [wsgi:error] [pid 15774] [remote 94.156.68.162:43506] Not Found: /.env
-[Thu Jul 25 06:22:37.940124 2024] [wsgi:error] [pid 15774] [remote 206.168.34.123:38430] Not Found: /favicon.ico
-[Thu Jul 25 06:53:04.468891 2024] [wsgi:error] [pid 15774] [remote 185.220.101.48:29931] Invalid HTTP_HOST header: 'lgpage.ru'. You may need to add 'lgpage.ru' to ALLOWED_HOSTS.     
-[Thu Jul 25 06:53:04.468982 2024] [wsgi:error] [pid 15774] [remote 185.220.101.48:29931] Traceback (most recent call last):
-[Thu Jul 25 06:53:04.468988 2024] [wsgi:error] [pid 15774] [remote 185.220.101.48:29931]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
-[Thu Jul 25 06:53:04.468992 2024] [wsgi:error] [pid 15774] [remote 185.220.101.48:29931]     response = get_response(request)
-[Thu Jul 25 06:53:04.468996 2024] [wsgi:error] [pid 15774] [remote 185.220.101.48:29931]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
-[Thu Jul 25 06:53:04.469009 2024] [wsgi:error] [pid 15774] [remote 185.220.101.48:29931]     response = self.process_request(request)
-[Thu Jul 25 06:53:04.469020 2024] [wsgi:error] [pid 15774] [remote 185.220.101.48:29931]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
-[Thu Jul 25 06:53:04.469024 2024] [wsgi:error] [pid 15774] [remote 185.220.101.48:29931]     host = request.get_host()
-[Thu Jul 25 06:53:04.469028 2024] [wsgi:error] [pid 15774] [remote 185.220.101.48:29931]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/http/request.py", line 151, in get_host
-[Thu Jul 25 06:53:04.469032 2024] [wsgi:error] [pid 15774] [remote 185.220.101.48:29931]     raise DisallowedHost(msg)
-[Thu Jul 25 06:53:04.469035 2024] [wsgi:error] [pid 15774] [remote 185.220.101.48:29931] django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'lgpage.ru'. You may need to add 'lgpage.ru' to ALLOWED_HOSTS.
-[Thu Jul 25 06:53:04.530305 2024] [wsgi:error] [pid 15774] [remote 185.220.101.48:29931] Bad Request: /
-[Thu Jul 25 07:14:57.726356 2024] [wsgi:error] [pid 15774] [remote 103.14.26.206:42138] Not Found: /restore.php
-[Thu Jul 25 07:35:29.181374 2024] [wsgi:error] [pid 15774] [remote 206.168.32.99:32852] Not Found: /favicon.ico
-[Thu Jul 25 08:23:40.919628 2024] [wsgi:error] [pid 15774] [remote 91.92.241.222:47672] Not Found: /.ydb/authorized_key.js
-[Thu Jul 25 08:23:44.286724 2024] [wsgi:error] [pid 15774] [remote 91.92.241.222:55710] Not Found: /jquery.js
-[Thu Jul 25 08:23:44.296393 2024] [wsgi:error] [pid 15774] [remote 91.92.241.222:55712] Not Found: /main.js
-[Thu Jul 25 08:23:44.296576 2024] [wsgi:error] [pid 15774] [remote 91.92.241.222:55708] Not Found: /home/YOUR-DIR/my-metrics.js
-[Thu Jul 25 08:23:44.394548 2024] [wsgi:error] [pid 15774] [remote 91.92.241.222:55704] Not Found: /App.js
-[Thu Jul 25 08:23:44.722436 2024] [wsgi:error] [pid 15774] [remote 91.92.241.222:55700] Not Found: /cdn.mathjax.org/mathjax/2.2-latest/MathJax.js
-[Thu Jul 25 08:23:44.732571 2024] [wsgi:error] [pid 15774] [remote 91.92.241.222:55698] Not Found: /.ydb/sa_name.js
-[Thu Jul 25 08:23:44.910948 2024] [wsgi:error] [pid 15774] [remote 91.92.241.222:55702] Not Found: /tasks.js
-[Thu Jul 25 08:24:19.230214 2024] [wsgi:error] [pid 15774] [remote 91.92.241.222:37504] Not Found: /home/YOUR-DIR/my-metrics.js
-[Thu Jul 25 08:24:19.243676 2024] [wsgi:error] [pid 15774] [remote 91.92.241.222:37506] Not Found: /jquery.js
-[Thu Jul 25 08:24:19.267642 2024] [wsgi:error] [pid 15774] [remote 91.92.241.222:37498] Not Found: /cdn.mathjax.org/mathjax/2.2-latest/MathJax.js
-[Thu Jul 25 08:24:19.268049 2024] [wsgi:error] [pid 15774] [remote 91.92.241.222:41914] Not Found: /main.js
-[Thu Jul 25 08:24:19.268390 2024] [wsgi:error] [pid 15774] [remote 91.92.241.222:37502] Not Found: /App.js
-[Thu Jul 25 08:24:19.269263 2024] [wsgi:error] [pid 15774] [remote 91.92.241.222:37500] Not Found: /tasks.js
-[Thu Jul 25 08:24:21.015581 2024] [wsgi:error] [pid 15774] [remote 91.92.241.222:46042] Not Found: /.ydb/authorized_key.js
-[Thu Jul 25 08:24:21.092141 2024] [wsgi:error] [pid 15774] [remote 91.92.241.222:46048] Not Found: /.ydb/sa_name.js
-[Thu Jul 25 08:36:59.546992 2024] [wsgi:error] [pid 15774] [remote 103.14.26.206:36694] Not Found: /restore.php
-[Thu Jul 25 08:38:02.838940 2024] [wsgi:error] [pid 15774] [remote 84.54.51.37:37696] Not Found: /cgi-bin/luci/;stok=/locale
-[Thu Jul 25 09:11:49.420336 2024] [wsgi:error] [pid 15774] [remote 179.43.191.18:35836] Invalid HTTP_HOST header: 'lgpage.ru'. You may need to add 'lgpage.ru' to ALLOWED_HOSTS.      
-[Thu Jul 25 09:11:49.420409 2024] [wsgi:error] [pid 15774] [remote 179.43.191.18:35836] Traceback (most recent call last):
-[Thu Jul 25 09:11:49.420414 2024] [wsgi:error] [pid 15774] [remote 179.43.191.18:35836]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
-[Thu Jul 25 09:11:49.420418 2024] [wsgi:error] [pid 15774] [remote 179.43.191.18:35836]     response = get_response(request)
-[Thu Jul 25 09:11:49.420421 2024] [wsgi:error] [pid 15774] [remote 179.43.191.18:35836]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
-[Thu Jul 25 09:11:49.420425 2024] [wsgi:error] [pid 15774] [remote 179.43.191.18:35836]     response = self.process_request(request)
-[Thu Jul 25 09:11:49.420429 2024] [wsgi:error] [pid 15774] [remote 179.43.191.18:35836]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
-[Thu Jul 25 09:11:49.420432 2024] [wsgi:error] [pid 15774] [remote 179.43.191.18:35836]     host = request.get_host()
-[Thu Jul 25 09:11:49.420436 2024] [wsgi:error] [pid 15774] [remote 179.43.191.18:35836]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/http/request.py", line 151, in get_host
-[Thu Jul 25 09:11:49.420439 2024] [wsgi:error] [pid 15774] [remote 179.43.191.18:35836]     raise DisallowedHost(msg)
-[Thu Jul 25 09:11:49.420442 2024] [wsgi:error] [pid 15774] [remote 179.43.191.18:35836] django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'lgpage.ru'. You may need to add 'lgpage.ru' to ALLOWED_HOSTS.
-[Thu Jul 25 09:11:49.463900 2024] [wsgi:error] [pid 15774] [remote 179.43.191.18:35836] Bad Request: /
-[Thu Jul 25 09:22:46.847806 2024] [wsgi:error] [pid 15774] [remote 46.8.10.115:58343] Invalid HTTP_HOST header: 'lgpage.ru'. You may need to add 'lgpage.ru' to ALLOWED_HOSTS.        
-[Thu Jul 25 09:22:46.847880 2024] [wsgi:error] [pid 15774] [remote 46.8.10.115:58343] Traceback (most recent call last):
-[Thu Jul 25 09:22:46.847884 2024] [wsgi:error] [pid 15774] [remote 46.8.10.115:58343]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
-[Thu Jul 25 09:22:46.847915 2024] [wsgi:error] [pid 15774] [remote 46.8.10.115:58343]     response = get_response(request)
-[Thu Jul 25 09:22:46.847918 2024] [wsgi:error] [pid 15774] [remote 46.8.10.115:58343]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
-[Thu Jul 25 09:22:46.847922 2024] [wsgi:error] [pid 15774] [remote 46.8.10.115:58343]     response = self.process_request(request)
-[Thu Jul 25 09:22:46.847925 2024] [wsgi:error] [pid 15774] [remote 46.8.10.115:58343]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
-[Thu Jul 25 09:22:46.847928 2024] [wsgi:error] [pid 15774] [remote 46.8.10.115:58343]     host = request.get_host()
-[Thu Jul 25 09:22:46.847931 2024] [wsgi:error] [pid 15774] [remote 46.8.10.115:58343]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/http/request.py", line 151, in get_host
-[Thu Jul 25 09:22:46.847934 2024] [wsgi:error] [pid 15774] [remote 46.8.10.115:58343]     raise DisallowedHost(msg)
-[Thu Jul 25 09:22:46.847937 2024] [wsgi:error] [pid 15774] [remote 46.8.10.115:58343] django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'lgpage.ru'. You may need to add 'lgpage.ru' to ALLOWED_HOSTS.
-[Thu Jul 25 09:22:46.872992 2024] [wsgi:error] [pid 15774] [remote 46.8.10.115:58343] Bad Request: /
-[Thu Jul 25 10:15:04.700007 2024] [wsgi:error] [pid 15774] [remote 90.188.240.11:6694] Not Found: /favicon.ico
-[Thu Jul 25 10:15:15.535934 2024] [wsgi:error] [pid 15774] [remote 90.188.240.11:6707] Not Found: /favicon.ico
-[Thu Jul 25 10:26:02.957038 2024] [wsgi:error] [pid 15774] [remote 90.188.240.11:6725] Not Found: /favicon.ico
-[Thu Jul 25 10:26:39.480016 2024] [wsgi:error] [pid 15774] [remote 213.180.203.32:60206] Not Found: /robots.txt
-[Thu Jul 25 13:35:05.843784 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082] mod_wsgi (pid=789): Failed to exec Python script file '/var/www/thost/dato138it/wsgi.py'.  
-[Thu Jul 25 13:35:05.844621 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082] mod_wsgi (pid=789): Exception occurred processing WSGI script '/var/www/thost/dato138it/wsgi.py'.
-[Thu Jul 25 13:35:05.845806 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082] Traceback (most recent call last):
-[Thu Jul 25 13:35:05.845882 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]   File "/var/www/thost/dato138it/wsgi.py", line 16, in <module>
-[Thu Jul 25 13:35:05.845887 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]     application = get_wsgi_application()
-[Thu Jul 25 13:35:05.845894 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
-[Thu Jul 25 13:35:05.845897 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]     django.setup(set_prefix=False)
-[Thu Jul 25 13:35:05.845906 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/__init__.py", line 19, in setup
-[Thu Jul 25 13:35:05.845910 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]     configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
-[Thu Jul 25 13:35:05.845915 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/conf/__init__.py", line 89, in __getattr__
-[Thu Jul 25 13:35:05.845919 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]     self._setup(name)
-[Thu Jul 25 13:35:05.845924 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/conf/__init__.py", line 76, in _setup
-[Thu Jul 25 13:35:05.845928 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]     self._wrapped = Settings(settings_module)
-[Thu Jul 25 13:35:05.845933 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/conf/__init__.py", line 190, in __init__
-[Thu Jul 25 13:35:05.845950 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]     mod = importlib.import_module(self.SETTINGS_MODULE)
-[Thu Jul 25 13:35:05.845955 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]   File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
-[Thu Jul 25 13:35:05.845958 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]     return _bootstrap._gcd_import(name[level:], package, level)
-[Thu Jul 25 13:35:05.845963 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]   File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
-[Thu Jul 25 13:35:05.845968 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]   File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
-[Thu Jul 25 13:35:05.845973 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]   File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
-[Thu Jul 25 13:35:05.845979 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]   File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
-[Thu Jul 25 13:35:05.845984 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]   File "<frozen importlib._bootstrap_external>", line 883, in exec_module
-[Thu Jul 25 13:35:05.845989 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
-[Thu Jul 25 13:35:05.845994 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]   File "/var/www/thost/dato138it/settings.py", line 14, in <module>
-[Thu Jul 25 13:35:05.845998 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082]     from dotenv import load_dotenv
-[Thu Jul 25 13:35:05.846016 2024] [wsgi:error] [pid 789] [remote 90.188.240.11:5082] ModuleNotFoundError: No module named 'dotenv'
-[Thu Jul 25 13:35:35.035492 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027] mod_wsgi (pid=789): Failed to exec Python script file '/var/www/thost/dato138it/wsgi.py'. 
-[Thu Jul 25 13:35:35.035572 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027] mod_wsgi (pid=789): Exception occurred processing WSGI script '/var/www/thost/dato138it/wsgi.py'.
-[Thu Jul 25 13:35:35.035700 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027] Traceback (most recent call last):
-[Thu Jul 25 13:35:35.035733 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]   File "/var/www/thost/dato138it/wsgi.py", line 16, in <module>
-[Thu Jul 25 13:35:35.035737 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]     application = get_wsgi_application()
-[Thu Jul 25 13:35:35.035741 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/core/wsgi.py", line 12, in get_wsgi_application
-[Thu Jul 25 13:35:35.035743 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]     django.setup(set_prefix=False)
-[Thu Jul 25 13:35:35.035747 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/__init__.py", line 19, in setup
-[Thu Jul 25 13:35:35.035749 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]     configure_logging(settings.LOGGING_CONFIG, settings.LOGGING)
-[Thu Jul 25 13:35:35.035752 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/conf/__init__.py", line 89, in __getattr__
-[Thu Jul 25 13:35:35.035755 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]     self._setup(name)
-[Thu Jul 25 13:35:35.035758 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/conf/__init__.py", line 76, in _setup
-[Thu Jul 25 13:35:35.035760 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]     self._wrapped = Settings(settings_module)
-[Thu Jul 25 13:35:35.035764 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/conf/__init__.py", line 190, in __init__
-[Thu Jul 25 13:35:35.035776 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]     mod = importlib.import_module(self.SETTINGS_MODULE)
-[Thu Jul 25 13:35:35.035780 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]   File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
-[Thu Jul 25 13:35:35.035782 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]     return _bootstrap._gcd_import(name[level:], package, level)
-[Thu Jul 25 13:35:35.035785 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]   File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
-[Thu Jul 25 13:35:35.035789 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]   File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
-[Thu Jul 25 13:35:35.035792 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]   File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
-[Thu Jul 25 13:35:35.035795 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]   File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
-[Thu Jul 25 13:35:35.035798 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]   File "<frozen importlib._bootstrap_external>", line 883, in exec_module
-[Thu Jul 25 13:35:35.035801 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]   File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
-[Thu Jul 25 13:35:35.035805 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]   File "/var/www/thost/dato138it/settings.py", line 14, in <module>
-[Thu Jul 25 13:35:35.035807 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027]     from dotenv import load_dotenv
-[Thu Jul 25 13:35:35.035818 2024] [wsgi:error] [pid 789] [remote 178.32.197.82:53027] ModuleNotFoundError: No module named 'dotenv'
-(pyenv) root@thost:~# cat /var/log/apache2/dato138it.ru_error.log.1
-[Wed Jul 24 12:11:02.402501 2024] [wsgi:error] [pid 1467] [remote 213.180.203.38:37244] Not Found: /robots.txt
-[Wed Jul 24 12:15:45.665746 2024] [wsgi:error] [pid 1467] [remote 167.172.184.5:35206] Not Found: /favicon.ico
-[Wed Jul 24 12:27:11.879332 2024] [wsgi:error] [pid 1467] [remote 5.255.231.19:38646] Not Found: /robots.txt
-[Wed Jul 24 12:27:18.975028 2024] [wsgi:error] [pid 1467] [remote 103.14.26.206:50534] Not Found: /restore.php
-[Wed Jul 24 12:55:25.459850 2024] [wsgi:error] [pid 1467] [remote 184.105.139.67:17014] Not Found: /favicon.ico
-[Wed Jul 24 12:55:53.866097 2024] [wsgi:error] [pid 1467] [remote 184.105.139.67:39966] Not Found: /geoserver/web/
-[Wed Jul 24 13:00:57.041548 2024] [wsgi:error] [pid 1467] [remote 194.165.17.13:45226] Invalid HTTP_HOST header: 'google.com:443'. You may need to add 'google.com' to ALLOWED_HOSTS.
-[Wed Jul 24 13:00:57.041620 2024] [wsgi:error] [pid 1467] [remote 194.165.17.13:45226] Traceback (most recent call last):
-[Wed Jul 24 13:00:57.041626 2024] [wsgi:error] [pid 1467] [remote 194.165.17.13:45226]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
-[Wed Jul 24 13:00:57.041629 2024] [wsgi:error] [pid 1467] [remote 194.165.17.13:45226]     response = get_response(request)
-[Wed Jul 24 13:00:57.041632 2024] [wsgi:error] [pid 1467] [remote 194.165.17.13:45226]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
-[Wed Jul 24 13:00:57.041636 2024] [wsgi:error] [pid 1467] [remote 194.165.17.13:45226]     response = self.process_request(request)
-[Wed Jul 24 13:00:57.041639 2024] [wsgi:error] [pid 1467] [remote 194.165.17.13:45226]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
-[Wed Jul 24 13:00:57.041643 2024] [wsgi:error] [pid 1467] [remote 194.165.17.13:45226]     host = request.get_host()
-[Wed Jul 24 13:00:57.041646 2024] [wsgi:error] [pid 1467] [remote 194.165.17.13:45226]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/http/request.py", line 151, in get_host
-[Wed Jul 24 13:00:57.041650 2024] [wsgi:error] [pid 1467] [remote 194.165.17.13:45226]     raise DisallowedHost(msg)
-[Wed Jul 24 13:00:57.041653 2024] [wsgi:error] [pid 1467] [remote 194.165.17.13:45226] django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'google.com:443'. You may need to add 'google.com' to ALLOWED_HOSTS.
-[Wed Jul 24 13:00:57.092159 2024] [wsgi:error] [pid 1467] [remote 194.165.17.13:45226] Bad Request: /
-[Wed Jul 24 13:11:30.778219 2024] [wsgi:error] [pid 1467] [remote 124.236.100.56:45846] Invalid HTTP_HOST header: 'lgpage.ru'. You may need to add 'lgpage.ru' to ALLOWED_HOSTS.      
-[Wed Jul 24 13:11:30.778268 2024] [wsgi:error] [pid 1467] [remote 124.236.100.56:45846] Traceback (most recent call last):
-[Wed Jul 24 13:11:30.778273 2024] [wsgi:error] [pid 1467] [remote 124.236.100.56:45846]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
-[Wed Jul 24 13:11:30.778277 2024] [wsgi:error] [pid 1467] [remote 124.236.100.56:45846]     response = get_response(request)
-[Wed Jul 24 13:11:30.778280 2024] [wsgi:error] [pid 1467] [remote 124.236.100.56:45846]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
-[Wed Jul 24 13:11:30.778283 2024] [wsgi:error] [pid 1467] [remote 124.236.100.56:45846]     response = self.process_request(request)
-[Wed Jul 24 13:11:30.778286 2024] [wsgi:error] [pid 1467] [remote 124.236.100.56:45846]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
-[Wed Jul 24 13:11:30.778290 2024] [wsgi:error] [pid 1467] [remote 124.236.100.56:45846]     host = request.get_host()
-[Wed Jul 24 13:11:30.778293 2024] [wsgi:error] [pid 1467] [remote 124.236.100.56:45846]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/http/request.py", line 151, in get_host
-[Wed Jul 24 13:11:30.778296 2024] [wsgi:error] [pid 1467] [remote 124.236.100.56:45846]     raise DisallowedHost(msg)
-[Wed Jul 24 13:11:30.778318 2024] [wsgi:error] [pid 1467] [remote 124.236.100.56:45846] django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'lgpage.ru'. You may need to add 'lgpage.ru' to ALLOWED_HOSTS.
-[Wed Jul 24 13:11:30.811392 2024] [wsgi:error] [pid 1467] [remote 124.236.100.56:45846] Bad Request: /
-[Wed Jul 24 14:04:56.047311 2024] [wsgi:error] [pid 1467] [remote 167.94.146.59:52028] Not Found: /favicon.ico
-[Wed Jul 24 14:22:43.911928 2024] [wsgi:error] [pid 1467] [remote 94.156.71.207:36122] Not Found: /.env
-[Wed Jul 24 14:23:40.793356 2024] [wsgi:error] [pid 1467] [remote 93.183.125.118:49812] Invalid HTTP_HOST header: 'lgpage.ru'. You may need to add 'lgpage.ru' to ALLOWED_HOSTS.      
-[Wed Jul 24 14:23:40.793399 2024] [wsgi:error] [pid 1467] [remote 93.183.125.118:49812] Traceback (most recent call last):
-[Wed Jul 24 14:23:40.793403 2024] [wsgi:error] [pid 1467] [remote 93.183.125.118:49812]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
-[Wed Jul 24 14:23:40.793407 2024] [wsgi:error] [pid 1467] [remote 93.183.125.118:49812]     response = get_response(request)
-[Wed Jul 24 14:23:40.793411 2024] [wsgi:error] [pid 1467] [remote 93.183.125.118:49812]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/utils/deprecation.py", line 133, in __call__
-[Wed Jul 24 14:23:40.793414 2024] [wsgi:error] [pid 1467] [remote 93.183.125.118:49812]     response = self.process_request(request)
-[Wed Jul 24 14:23:40.793418 2024] [wsgi:error] [pid 1467] [remote 93.183.125.118:49812]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/middleware/common.py", line 48, in process_request
-[Wed Jul 24 14:23:40.793421 2024] [wsgi:error] [pid 1467] [remote 93.183.125.118:49812]     host = request.get_host()
-[Wed Jul 24 14:23:40.793425 2024] [wsgi:error] [pid 1467] [remote 93.183.125.118:49812]   File "/var/www/thost/pyenv/lib/python3.10/site-packages/django/http/request.py", line 151, in get_host
-[Wed Jul 24 14:23:40.793428 2024] [wsgi:error] [pid 1467] [remote 93.183.125.118:49812]     raise DisallowedHost(msg)
-[Wed Jul 24 14:23:40.793431 2024] [wsgi:error] [pid 1467] [remote 93.183.125.118:49812] django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'lgpage.ru'. You may need to add 'lgpage.ru' to ALLOWED_HOSTS.
-[Wed Jul 24 14:23:40.839340 2024] [wsgi:error] [pid 1467] [remote 93.183.125.118:49812] Bad Request: /
-[Wed Jul 24 14:37:09.845724 2024] [wsgi:error] [pid 1467] [remote 83.97.73.245:45196] Not Found: /actuator/gateway/routes
-[Wed Jul 24 17:49:15.218951 2024] [core:error] [pid 2805] [client 200.90.0.10:54902] AH10244: invalid URI path (/cgi-bin/.%2e/.%2e/.%2e/.%2e/.%2e/.%2e/.%2e/.%2e/.%2e/.%2e/bin/sh)    
-[Wed Jul 24 17:49:15.783266 2024] [core:error] [pid 2802] [client 200.90.0.10:54910] AH10244: invalid URI path (/cgi-bin/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/%%32%65%%32%65/bin/sh)
-[Wed Jul 24 14:49:16.393742 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:16.854867 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /vendor/phpunit/phpunit/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:17.309144 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /vendor/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:17.748322 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /vendor/phpunit/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:18.167979 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /vendor/phpunit/phpunit/LICENSE/eval-stdin.php
-[Wed Jul 24 14:49:18.607418 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /vendor/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:19.039451 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:19.439146 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /phpunit/phpunit/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:19.824951 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:20.195340 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /phpunit/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:20.537819 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /lib/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:20.889806 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /lib/phpunit/phpunit/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:21.224730 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /lib/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:21.578042 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /lib/phpunit/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:21.921775 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /lib/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:22.274242 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /laravel/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:22.656809 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /www/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:23.060131 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /ws/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:23.473588 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /yii/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:23.968677 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /zend/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:24.394161 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /ws/ec/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:24.847941 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /V2/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:25.262680 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /tests/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:25.706558 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /test/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:26.118212 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /testing/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:26.521182 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /api/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:26.885441 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /demo/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:27.246355 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /cms/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:27.595128 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /crm/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:28.388200 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /backup/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:28.786027 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /blog/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:29.235403 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /workspace/drupal/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:29.663137 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /panel/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:30.094471 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /public/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:30.532169 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /apps/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:30.922718 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /app/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php
-[Wed Jul 24 14:49:31.303478 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /index.php
-[Wed Jul 24 14:49:31.721194 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /public/index.php
-[Wed Jul 24 14:49:32.148719 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /index.php
-[Wed Jul 24 14:49:32.526839 2024] [wsgi:error] [pid 1467] [remote 200.90.0.10:54926] Not Found: /index.php
-[Wed Jul 24 14:54:42.181024 2024] [wsgi:error] [pid 1467] [remote 37.114.63.46:52806] Not Found: /.env
-[Wed Jul 24 14:54:42.253584 2024] [wsgi:error] [pid 1467] [remote 37.114.63.46:52806] Forbidden (CSRF cookie not set.): /
-[Wed Jul 24 14:57:02.163695 2024] [wsgi:error] [pid 1467] [remote 87.250.224.76:61208] Not Found: /robots.txt
-[Wed Jul 24 14:59:05.642567 2024] [wsgi:error] [pid 1467] [remote 47.128.43.83:37596] Not Found: /robots.txt
-[Wed Jul 24 15:03:07.370276 2024] [wsgi:error] [pid 1467] [remote 86.250.46.90:43309] Not Found: /robots.txt
-[Wed Jul 24 15:07:05.958378 2024] [wsgi:error] [pid 1467] [remote 47.128.113.234:19822] Not Found: /robots.txt
-[Wed Jul 24 15:11:07.870813 2024] [wsgi:error] [pid 1467] [remote 91.235.98.6:53837] Not Found: /robots.txt
-[Wed Jul 24 16:44:19.338705 2024] [wsgi:error] [pid 1467] [remote 221.1.226.110:58889] Not Found: /boaform/admin/formLogin
-[Wed Jul 24 17:26:14.570763 2024] [wsgi:error] [pid 1467] [remote 103.14.26.206:42286] Not Found: /restore.php
-[Wed Jul 24 18:00:14.332205 2024] [wsgi:error] [pid 1467] [remote 206.168.32.107:36428] Not Found: /favicon.ico
-[Wed Jul 24 19:15:34.388446 2024] [wsgi:error] [pid 1467] [remote 103.14.26.206:48212] Not Found: /restore.php
-[Wed Jul 24 19:27:04.511534 2024] [wsgi:error] [pid 1467] [remote 13.52.99.147:44720] Not Found: /.env
-[Wed Jul 24 20:10:52.399251 2024] [wsgi:error] [pid 1467] [remote 103.14.26.206:44614] Not Found: /restore.php
-[Wed Jul 24 20:19:38.767196 2024] [wsgi:error] [pid 1467] [remote 80.76.49.124:56865] Not Found: /.env
-[Wed Jul 24 20:46:49.179330 2024] [wsgi:error] [pid 1467] [remote 91.239.208.91:60113] Not Found: /wp-includes/wlwmanifest.xml
-[Wed Jul 24 20:46:49.228808 2024] [wsgi:error] [pid 1467] [remote 91.239.208.91:60113] Not Found: /xmlrpc.php
-[Wed Jul 24 20:46:49.388225 2024] [wsgi:error] [pid 1467] [remote 91.239.208.91:60113] Not Found: /blog/wp-includes/wlwmanifest.xml
-[Wed Jul 24 20:46:49.439470 2024] [wsgi:error] [pid 1467] [remote 91.239.208.91:60113] Not Found: /web/wp-includes/wlwmanifest.xml
-[Wed Jul 24 20:46:49.489327 2024] [wsgi:error] [pid 1467] [remote 91.239.208.91:60113] Not Found: /wordpress/wp-includes/wlwmanifest.xml
-[Wed Jul 24 20:46:49.537310 2024] [wsgi:error] [pid 1467] [remote 91.239.208.91:60113] Not Found: /website/wp-includes/wlwmanifest.xml
-[Wed Jul 24 20:46:49.587756 2024] [wsgi:error] [pid 1467] [remote 91.239.208.91:60113] Not Found: /wp/wp-includes/wlwmanifest.xml
-[Wed Jul 24 20:46:49.635887 2024] [wsgi:error] [pid 1467] [remote 91.239.208.91:60113] Not Found: /news/wp-includes/wlwmanifest.xml
-[Wed Jul 24 20:46:49.687077 2024] [wsgi:error] [pid 1467] [remote 91.239.208.91:60113] Not Found: /2018/wp-includes/wlwmanifest.xml
-[Wed Jul 24 20:46:49.733666 2024] [wsgi:error] [pid 1467] [remote 91.239.208.91:60113] Not Found: /2019/wp-includes/wlwmanifest.xml
-[Wed Jul 24 20:46:49.781536 2024] [wsgi:error] [pid 1467] [remote 91.239.208.91:60113] Not Found: /shop/wp-includes/wlwmanifest.xml
-[Wed Jul 24 20:46:49.830395 2024] [wsgi:error] [pid 1467] [remote 91.239.208.91:60113] Not Found: /wp1/wp-includes/wlwmanifest.xml
-[Wed Jul 24 20:46:49.879975 2024] [wsgi:error] [pid 1467] [remote 91.239.208.91:60113] Not Found: /test/wp-includes/wlwmanifest.xml
-[Wed Jul 24 20:46:49.977054 2024] [wsgi:error] [pid 1467] [remote 91.239.208.91:60113] Not Found: /wp2/wp-includes/wlwmanifest.xml
-[Wed Jul 24 20:46:50.028448 2024] [wsgi:error] [pid 1467] [remote 91.239.208.91:60113] Not Found: /site/wp-includes/wlwmanifest.xml
-[Wed Jul 24 20:46:50.081005 2024] [wsgi:error] [pid 1467] [remote 91.239.208.91:60113] Not Found: /cms/wp-includes/wlwmanifest.xml
-[Wed Jul 24 20:46:50.130640 2024] [wsgi:error] [pid 1467] [remote 91.239.208.91:60113] Not Found: /sito/wp-includes/wlwmanifest.xml
+  File "C:\Users\\Documents\scripts\ces\cesAdd_v7_1.py", line 2112, in <module>
+    listFiles = importCes(listFiles)
+  File "C:\Users\\Documents\scripts\ces\cesAdd_v7_1.py", line 348, in importCes
+    findImportlink.click()
+  File "C:\Users\\forCes\env\lib\site-packages\selenium\webdriver\remote\webelement.py"
+, line 94, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File "C:\Users\\forCes\env\lib\site-packages\selenium\webdriver\remote\webelement.py"
+, line 395, in _execute
+    return self._parent.execute(command, params)
+  File "C:\Users\\forCes\env\lib\site-packages\selenium\webdriver\remote\webdriver.py",
+ line 384, in execute
+    self.error_handler.check_response(response)
+  File "C:\Users\\forCes\env\lib\site-packages\selenium\webdriver\remote\errorhandler.p
+y", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Ele
+ment <a class="btn btn-primary" href="/CreateSite_web/import_nokia_4g/index_bss.php">...</a> is not
+clickable at point (348, 314). Other element would receive the click: <th class="sorting" tabindex="
+0" aria-controls="user_data" rowspan="1" colspan="1" aria-label="...: activate to sort column ascend
+ing" style="width: 120px;">Date</th>
+  (Session info: chrome=138.0.7204.895)
+Stacktrace:
+        GetHandleVerifier [0x0x7ff63c537c15+24469]
+        (No symbol) [0x0x7ff63c47f920]
+        (No symbol) [0x0x7ff63c2cb19a]
+        (No symbol) [0x0x7ff63c329749]
+        (No symbol) [0x0x7ff63c3270fb]
+        (No symbol) [0x0x7ff63c324141]
+        (No symbol) [0x0x7ff63c323056]
+        (No symbol) [0x0x7ff63c3147c8]
+        (No symbol) [0x0x7ff63c34c2ca]
+        (No symbol) [0x0x7ff63c314076]
+        (No symbol) [0x0x7ff63c34c4d0]
+        (No symbol) [0x0x7ff63c374175]
+        (No symbol) [0x0x7ff63c34c0a3]
+        (No symbol) [0x0x7ff63c3121a4]
+        (No symbol) [0x0x7ff63c313513]
+        GetHandleVerifier [0x0x7ff63c8b0cfd+3666045]
+        GetHandleVerifier [0x0x7ff63c8e4332+3876530]
+        GetHandleVerifier [0x0x7ff63c8d9f13+3834515]
+        GetHandleVerifier [0x0x7ff63c62486e+994286]
+        (No symbol) [0x0x7ff63c48904d]
+        (No symbol) [0x0x7ff63c484cc4]
+        (No symbol) [0x0x7ff63c484e77]
+        (No symbol) [0x0x7ff63c476525]
+        BaseThreadInitThunk [0x0x7ffbf7227374+20]
+        RtlUserThreadStart [0x0x7ffbf875cc91+33]
+
+            print(file)
+            print("... Ready to import data 4G Nokia/Bulat from "+file+" file to CES website")
+            with open("outPyScript.log", "a") as outfile:
+                outfile.write("... Ready to import data 4G Nokia/Bulat from "+file+" file to CES website\n")    
+            op = webdriver.ChromeOptions()
+            
+            op.binary_location =  r'C:\\Program Files\Yandex\YandexBrowser\Application\browser.exe'
+            op.add_argument('headless')
+            service = Service(executable_path=r'C:\\Distr\chromedriver\ya\yandexdriver.exe')
+            #browser = webdriver.Chrome()
+            browser = webdriver.Chrome(service=service)  
+            
+            browser.get('http://'+ipNokia+'/CreateSite_web/login.php')
+            browser.maximize_window()
+            soup = BeautifulSoup(browser.page_source, "html.parser")
+            findUsername = browser.find_element(By.ID, "username")
+            findPasswd = browser.find_element(By.ID, "password")
+            findLogin = browser.find_element(By.CSS_SELECTOR, '.btn-primary')
+            findUsername.send_keys(userCes)
+            findPasswd.send_keys(passwdCes)
+            findLogin.click()
+
+            WebDriverWait(browser, 10).until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'a[href="BSS_nokia_table.php"]')))
+            findBsslink = browser.find_element(By.CSS_SELECTOR, 'a[href="BSS_nokia_table.php"]')
+            findBsslink.click()
+            time.sleep(5)
+
+            findTecnoklogylink = browser.find_element(By.CSS_SELECTOR, 'a[href="tables_nokia_4g/table_nokia_bss_4g/index.php"]')
+            findTecnoklogylink.click()
+
+            findImportlink = WebDriverWait(browser, 10).until(
+                EC.element_to_be_clickable((By.CSS_SELECTOR, 'a[href="/CreateSite_web/import_nokia_4g/index_bss.php"]'))
+            )
+            findImportlink.click()
+            try:
+                WebDriverWait(browser, 5).until(EC.alert_is_present())
+                alert = browser.switch_to.alert
+                alert.accept()
+            except TimeoutException:
+                print("... Alert did not appear, continuing.")
+            
+            findInput = browser.find_element(By.XPATH, "//input[@type='file']")
+            findSubmit = browser.find_element(By.CSS_SELECTOR, '.btn-primary')
+            findInput.send_keys(os.path.expanduser("~") + "\\Documents\scripts\ces\\"+file)
+            findSubmit.click()
+            time.sleep(5)
+            soup = BeautifulSoup(browser.page_source, "html.parser")
+            findHtmlMessage = soup.find_all(class_='jumbotron')
+            if ("Файл для импорта должен быть" in str(findHtmlMessage[0])) or ("Файл CSV неверной кодировки" in str(findHtmlMessage[0])) or ("Недопустимы разные" in str(findHtmlMessage[0])):
+                with open("outPyScript.log", "a") as outfile:
+                    outfile.write("- Attention! The file "+file+" for import does not match.\n")
+            if "Импорт выполнен" in str(findHtmlMessage[0]):
+                if "КРОМЕ" in str(findHtmlMessage[0]):
+                    with open("outPyScript.log", "a") as outfile:
+                        outfile.write("- Attention! The import "+file+" is complete, but partially. Some fields are already filled in.\n")
+                else:
+                    with open("outPyScript.log", "a") as outfile:
+                        outfile.write("+ Import file "+file+" completed successfully.\n")
+            browser.quit()
