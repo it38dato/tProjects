@@ -1,1 +1,2 @@
 
+0	24	09:24:36	CAST((CAST(CAST(l.ulChBw AS CHAR) AS INT)/10) AS INT) AS Bandwidth,	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'CAST((CAST(CAST(l.ulChBw AS CHAR) AS INT)/10) AS INT) AS Bandwidth,' at line 1	0.094 sec
