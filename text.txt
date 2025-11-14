@@ -1,2 +1,25 @@
 
 0	24	09:24:36	CAST((CAST(CAST(l.ulChBw AS CHAR) AS INT)/10) AS INT) AS Bandwidth,	Error Code: 1064. You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'CAST((CAST(CAST(l.ulChBw AS CHAR) AS INT)/10) AS INT) AS Bandwidth,' at line 1	0.094 sec
+
+0	8	09:35:01	SELECT 
+     l.LNCEL AS CID, 
+     l.earfcnDL, l.rootSeqIndex, 
+     CAST((CAST(CAST(l.ulChBw AS CHAR) AS INT)/10) AS INT) AS Bandwidth, 
+     (CASE WHEN CAST(l.prachCS as CHAR) = '14' THEN '35(область)' ELSE '15(город)' END) AS CellRange,
+     (CASE WHEN l.dlMimoMode = 0 THEN 'SingleTx' ELSE '' END) AS SingleTx, 
+     b.cellName AS NSector, 
+     SUBSTRING(CAST(b.cellName as CHAR),1,6) AS SiteName, 
+     e.phyCellId AS PCI, 
+     e.tac, 
+     ROUND(POWER(10, e.pMAX/100)/1000,0) AS Pmax, 
+     bt.enbName AS SystemModule
+ FROM config_Nokia4G_LNCEL.LNCEL_begin AS b
+ LEFT OUTER JOIN (SELECT NetActNo, MRBTS, LNBTS, LNCEL, ulChBw, earfcnDL, rootSeqIndex, prachCS, dlMimoMode FROM config_Nokia4G.LNCEL_FDD
+ UNION SELECT NetActNo, MRBTS, LNBTS, LNCEL, ChBw, earfcn, rootSeqIndex, prachCS, dlMimoMode FROM config_Nokia4G.LNCEL_TDD) AS l 
+ ON b.NetActNo = l.NetActNo AND b.MRBTS = l.MRBTS AND b.LNBTS = l.LNBTS AND b.LNCEL = l.LNCEL
+ LEFT OUTER JOIN config_Nokia4G_LNCEL.LNCEL_end AS e 
+ ON b.MRBTS = e.MRBTS AND b.LNBTS = e.LNBTS AND b.LNCEL = e.LNCEL
+ LEFT OUTER JOIN config_Nokia4G.LNBTS_begin AS bt 
+ ON b.NetActNo = bt.NetActNo AND b.MRBTS = bt.MRBTS AND b.LNBTS = bt.LNBTS
+ WHERE SUBSTRING(CAST(b.cellName as CHAR),1,2) IN ('IR','KM','MD','SA','AN','BI','HB','IO')
+ ORDER BY b.MRBTS, b.LNCEL	Error Code: 2013. Lost connection to MySQL server during query	30.000 sec
