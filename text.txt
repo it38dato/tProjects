@@ -1,1 +1,3 @@
 
+переписать бот https://github.com/it38dato/TelegramBotDictionary используя python, telebot, ubuntu, docker, cicd, API с добавлением функционалов бот принимает логи и анализирует, показывает статус сервиса и отправляет алерты
+
