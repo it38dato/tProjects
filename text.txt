@@ -1,24 +1,48 @@
 
 переписать бот https://github.com/it38dato/TelegramBotDictionary используя python, telebot, ubuntu, docker, cicd, API с добавлением функционалов бот принимает логи и анализирует, показывает статус сервиса и отправляет алерты
 
-import sqlite3
 import pandas as pd
+import sqlite3
 
-def list_tables_with_pandas(db_file):
-    conn = sqlite3.connect(db_file)
-    
-    # Pandas может напрямую выполнить запрос и вернуть DataFrame
-    query = "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'"
-    df = pd.read_sql_query(query, conn)
-    
-    conn.close()
-    
-    if not df.empty:
-        print("\nСписок таблиц (через pandas):")
-        print(df['name'].tolist())
-    else:
-        print("\nВ базе данных нет пользовательских таблиц.")
+def display_table_site_with_pandas(db_file):
+    """
+    Подключается к базе данных, извлекает все данные из таблицы 'site' 
+    с помощью pandas и отображает их.
+    """
+    conn = None
+    try:
+        # 1. Устанавливаем соединение с базой данных
+        conn = sqlite3.connect(db_file)
+        
+        # 2. Определяем SQL-запрос для выбора всех данных из таблицы 'site'
+        table_name = 'site'
+        query = f"SELECT * FROM {table_name}"
+        
+        # 3. Используем pandas для выполнения запроса и загрузки в DataFrame
+        # read_sql_query автоматически обрабатывает соединение и курсор
+        df = pd.read_sql_query(query, conn)
+        
+        # 4. Отображаем DataFrame
+        if not df.empty:
+            print(f"Данные из таблицы '{table_name}':")
+            # print(df.head()) # Показать только первые 5 строк
+            # print(df.info()) # Показать информацию о столбцах и типах данных
+            print(df) # Показать все данные (может быть много строк)
+        else:
+            print(f"Таблица '{table_name}' пуста или не найдена.")
+
+    except sqlite3.Error as e:
+        print(f"Произошла ошибка базы данных: {e}")
+    except pd.io.sql.DatabaseError as e:
+        print(f"Ошибка pandas при выполнении запроса: {e}")
+    finally:
+        if conn:
+            # 5. Закрываем соединение
+            conn.close()
+            print("\nСоединение с БД закрыто.")
 
 # --- Пример использования ---
-database_file_path = 'моя_база.db.sqlite3'
-list_tables_with_pandas(database_file_path)
+# Укажите путь к вашей базе данных
+database_file_path = 'моя_база.db.sqlite3' 
+
+display_table_site_with_pandas(database_file_path)
