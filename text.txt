@@ -1,48 +1,44 @@
 
 переписать бот https://github.com/it38dato/TelegramBotDictionary используя python, telebot, ubuntu, docker, cicd, API с добавлением функционалов бот принимает логи и анализирует, показывает статус сервиса и отправляет алерты
 
-import pandas as pd
 import sqlite3
 
-def display_table_site_with_pandas(db_file):
+def list_tables_sqlite(db_file):
     """
-    Подключается к базе данных, извлекает все данные из таблицы 'site' 
-    с помощью pandas и отображает их.
+    Подключается к базе данных SQLite и выводит список всех пользовательских таблиц.
     """
     conn = None
     try:
-        # 1. Устанавливаем соединение с базой данных
         conn = sqlite3.connect(db_file)
+        cursor = conn.cursor()
         
-        # 2. Определяем SQL-запрос для выбора всех данных из таблицы 'site'
-        table_name = 'site'
-        query = f"SELECT * FROM {table_name}"
+        print(f"Подключено к базе данных: {db_file}")
+
+        # SQL-запрос для получения имен таблиц
+        # sqlite_master — это системная таблица, хранящая метаданные БД.
+        # type='table' отфильтровывает индексы и представления.
+        # name NOT LIKE 'sqlite_%' исключает внутренние системные таблицы.
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'")
         
-        # 3. Используем pandas для выполнения запроса и загрузки в DataFrame
-        # read_sql_query автоматически обрабатывает соединение и курсор
-        df = pd.read_sql_query(query, conn)
+        tables = cursor.fetchall()
         
-        # 4. Отображаем DataFrame
-        if not df.empty:
-            print(f"Данные из таблицы '{table_name}':")
-            # print(df.head()) # Показать только первые 5 строк
-            # print(df.info()) # Показать информацию о столбцах и типах данных
-            print(df) # Показать все данные (может быть много строк)
+        if tables:
+            print("\nСписок таблиц в базе данных:")
+            for table in tables:
+                # fetchall() возвращает список кортежей [(table_name,), ...]
+                print(f"- {table[0]}")
         else:
-            print(f"Таблица '{table_name}' пуста или не найдена.")
+            print("\nВ базе данных нет пользовательских таблиц.")
 
     except sqlite3.Error as e:
         print(f"Произошла ошибка базы данных: {e}")
-    except pd.io.sql.DatabaseError as e:
-        print(f"Ошибка pandas при выполнении запроса: {e}")
     finally:
         if conn:
-            # 5. Закрываем соединение
             conn.close()
-            print("\nСоединение с БД закрыто.")
+            print("Соединение с БД закрыто.")
 
 # --- Пример использования ---
 # Укажите путь к вашей базе данных
-database_file_path = 'моя_база.db.sqlite3' 
+database_file_path = 'моя_база.db.sqlite3'
 
-display_table_site_with_pandas(database_file_path)
+list_tables_sqlite(database_file_path)
