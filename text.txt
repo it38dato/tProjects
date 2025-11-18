@@ -3,42 +3,55 @@
 
 import sqlite3
 
-def list_tables_sqlite(db_file):
+def display_table_site_without_pandas(db_file):
     """
-    Подключается к базе данных SQLite и выводит список всех пользовательских таблиц.
+    Подключается к базе данных, извлекает все данные из таблицы 'site' 
+    и отображает их с помощью нативного модуля sqlite3.
     """
     conn = None
     try:
+        # 1. Устанавливаем соединение с базой данных
         conn = sqlite3.connect(db_file)
         cursor = conn.cursor()
         
-        print(f"Подключено к базе данных: {db_file}")
+        table_name = 'site'
+        print(f"Подключено к базе данных. Извлечение данных из таблицы '{table_name}'...")
 
-        # SQL-запрос для получения имен таблиц
-        # sqlite_master — это системная таблица, хранящая метаданные БД.
-        # type='table' отфильтровывает индексы и представления.
-        # name NOT LIKE 'sqlite_%' исключает внутренние системные таблицы.
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'")
+        # 2. Выполняем SQL-запрос
+        cursor.execute(f"SELECT * FROM {table_name}")
         
-        tables = cursor.fetchall()
+        # 3. Получаем все результаты запроса
+        records = cursor.fetchall()
         
-        if tables:
-            print("\nСписок таблиц в базе данных:")
-            for table in tables:
-                # fetchall() возвращает список кортежей [(table_name,), ...]
-                print(f"- {table[0]}")
+        # 4. Отображаем данные
+        if records:
+            # Получаем названия столбцов (опционально, для красивого вывода)
+            column_names = [description[0] for description in cursor.description]
+            
+            print("-" * 50)
+            print(f"Данные из таблицы '{table_name}':")
+            # Печать заголовков
+            print(" | ".join(column_names))
+            print("-" * 50)
+            
+            # Печать строк данных
+            for row in records:
+                # Преобразуем каждый элемент строки в строку для печати
+                print(" | ".join(map(str, row)))
+            print("-" * 50)
         else:
-            print("\nВ базе данных нет пользовательских таблиц.")
+            print(f"Таблица '{table_name}' пуста или не найдена.")
 
     except sqlite3.Error as e:
         print(f"Произошла ошибка базы данных: {e}")
     finally:
         if conn:
+            # 5. Закрываем соединение
             conn.close()
             print("Соединение с БД закрыто.")
 
 # --- Пример использования ---
 # Укажите путь к вашей базе данных
-database_file_path = 'моя_база.db.sqlite3'
+database_file_path = 'моя_база.db.sqlite3' 
 
-list_tables_sqlite(database_file_path)
+display_table_site_without_pandas(database_file_path)
