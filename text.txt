@@ -156,47 +156,77 @@ print("Перенос завершён!")
 
 
 
-
-
 @echo off
 setlocal
 
-REM --- 1. Проверка наличия Python в PATH ---
-echo Проверка наличия Python...
+REM --- 1. Проверка наличия Python ---
 where python >nul 2>nul
 if %errorlevel% neq 0 (
-    echo.
-    echo ======================================================
-    echo Ошибка: Python НЕ установлен или не добавлен в PATH.
-    echo ======================================================
-    echo.
-    echo Пожалуйста, установите Python с официального сайта: https://www.python.org/downloads/
-    echo ОБЯЗАТЕЛЬНО отметьте галочку "Add Python to PATH" во время установки.
-    echo.
-    REM Можете добавить паузу, чтобы пользователь успел прочитать сообщение
+    echo Ошибка: Python не найден. Сначала установите Python и добавьте его в PATH.
     pause
-    goto :eof
+    exit /b 1
 )
 
-REM --- 2. Если Python найден, отобразить его версию ---
-echo.
-for /f "tokens=*" %%v in ('python -V 2^>^&1') do set "python_version=%%v"
-echo ======================================================
-echo Python успешно найден. Версия: %python_version%
-echo ======================================================
-echo.
-REM Продолжение вашего скрипта (например, установка Django)
-REM call :install_django
+REM --- 2. Определение пути к домашней директории и имени окружения ---
+SET VENV_NAME=envTemplate2
+REM Переменная %USERPROFILE% содержит путь к домашней директории в Windows (например, C:\Users\Username)
+SET VENV_PATH=%USERPROFILE%\%VENV_NAME%
+SET REQS_FILE=requirements.txt
 
+echo Домашняя директория: %USERPROFILE%
+echo Путь к виртуальному окружению: %VENV_PATH%
+echo Файл требований: %REQS_FILE%
+
+REM --- 3. Создание виртуального окружения (если еще не существует) ---
+if not exist "%VENV_PATH%" (
+    echo Создание виртуального окружения "%VENV_NAME%"...
+    python -m venv "%VENV_PATH%"
+    if %errorlevel% neq 0 (
+        echo Ошибка при создании виртуального окружения.
+        pause
+        exit /b 1
+    )
+    echo Виртуальное окружение успешно создано.
+) else (
+    echo Виртуальное окружение "%VENV_NAME%" уже существует. Пропускаем создание.
+)
+
+REM --- 4. Активация окружения и установка библиотек ---
+REM В Windows активация происходит через скрипт Scripts\activate.bat
+echo Активация виртуального окружения и установка библиотек из %REQS_FILE%...
+
+REM Вызываем скрипт активации, а затем выполняем команды установки внутри того же контекста
+CALL "%VENV_PATH%\Scripts\activate.bat"
+
+if %errorlevel% neq 0 (
+    echo Ошибка при активации окружения.
+    pause
+    exit /b 1
+)
+
+REM Теперь, когда окружение активно, используем локальный python и pip
+pip install --upgrade pip
+pip install -r "%REQS_FILE%"
+
+if %errorlevel% neq 0 (
+    echo Ошибка при установке библиотек.
+    pause
+    exit /b 1
+)
+
+echo.
+echo =================================================================
+echo Все готово! Виртуальное окружение %VENV_NAME% настроено.
+echo Библиотеки из %REQS_FILE% установлены.
+echo =================================================================
+
+REM --- 5. Инструкции для пользователя по активации в будущем ---
+echo.
+echo Чтобы активировать окружение вручную в дальнейшем, используйте команду:
+echo CALL "%VENV_PATH%\Scripts\activate.bat"
+echo.
+
+REM Оставляем консоль открытой для просмотра результатов
+pause
 endlocal
-goto :eof
 
-REM :install_django
-REM echo Установка Django...
-REM python -m pip install django
-REM if %errorlevel% neq 0 (
-REM     echo Ошибка при установке Django.
-REM ) else (
-REM     echo Django успешно установлен.
-REM )
-REM goto :eof
