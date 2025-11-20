@@ -155,47 +155,31 @@ print("Перенос завершён!")
 
 
 
-
 @echo off
 setlocal
 
-REM --- 1. Проверка наличия Python ---
-where python >nul 2>nul
-if %errorlevel% neq 0 (
-    echo Ошибка: Python не найден. Сначала установите Python и добавьте его в PATH.
+SET VENV_NAME=envTemplate2
+SET VENV_PATH=%USERPROFILE%\%VENV_NAME%
+SET MANAGE_PY=manage.py
+
+REM --- 1. Проверка наличия файла manage.py ---
+if not exist "%MANAGE_PY%" (
+    echo Ошибка: Файл "%MANAGE_PY%" не найден в текущей директории.
+    echo Убедитесь, что вы запустили скрипт из корня вашего Django-проекта.
     pause
     exit /b 1
 )
 
-REM --- 2. Определение пути к домашней директории и имени окружения ---
-SET VENV_NAME=envTemplate2
-REM Переменная %USERPROFILE% содержит путь к домашней директории в Windows (например, C:\Users\Username)
-SET VENV_PATH=%USERPROFILE%\%VENV_NAME%
-SET REQS_FILE=requirements.txt
-
-echo Домашняя директория: %USERPROFILE%
-echo Путь к виртуальному окружению: %VENV_PATH%
-echo Файл требований: %REQS_FILE%
-
-REM --- 3. Создание виртуального окружения (если еще не существует) ---
-if not exist "%VENV_PATH%" (
-    echo Создание виртуального окружения "%VENV_NAME%"...
-    python -m venv "%VENV_PATH%"
-    if %errorlevel% neq 0 (
-        echo Ошибка при создании виртуального окружения.
-        pause
-        exit /b 1
-    )
-    echo Виртуальное окружение успешно создано.
-) else (
-    echo Виртуальное окружение "%VENV_NAME%" уже существует. Пропускаем создание.
+REM --- 2. Проверка наличия виртуального окружения ---
+if not exist "%VENV_PATH%\Scripts\activate.bat" (
+    echo Ошибка: Виртуальное окружение "%VENV_NAME%" не найдено по пути "%VENV_PATH%".
+    echo Пожалуйста, сначала запустите setup_venv.bat.
+    pause
+    exit /b 1
 )
 
-REM --- 4. Активация окружения и установка библиотек ---
-REM В Windows активация происходит через скрипт Scripts\activate.bat
-echo Активация виртуального окружения и установка библиотек из %REQS_FILE%...
-
-REM Вызываем скрипт активации, а затем выполняем команды установки внутри того же контекста
+REM --- 3. Активация виртуального окружения ---
+echo Активация виртуального окружения %VENV_NAME%...
 CALL "%VENV_PATH%\Scripts\activate.bat"
 
 if %errorlevel% neq 0 (
@@ -204,29 +188,14 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-REM Теперь, когда окружение активно, используем локальный python и pip
-pip install --upgrade pip
-pip install -r "%REQS_FILE%"
+echo Окружение активировано.
 
-if %errorlevel% neq 0 (
-    echo Ошибка при установке библиотек.
-    pause
-    exit /b 1
-)
+REM --- 4. Запуск сервера Django ---
+echo Запуск сервера Django...
+REM Эта команда использует python из активированного виртуального окружения
+python manage.py runserver
 
-echo.
-echo =================================================================
-echo Все готово! Виртуальное окружение %VENV_NAME% настроено.
-echo Библиотеки из %REQS_FILE% установлены.
-echo =================================================================
+REM Сервер будет работать до тех пор, пока вы не закроете консоль или не нажмете Ctrl+C
 
-REM --- 5. Инструкции для пользователя по активации в будущем ---
-echo.
-echo Чтобы активировать окружение вручную в дальнейшем, используйте команду:
-echo CALL "%VENV_PATH%\Scripts\activate.bat"
-echo.
-
-REM Оставляем консоль открытой для просмотра результатов
-pause
 endlocal
 
