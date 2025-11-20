@@ -151,3 +151,39 @@ print("Перенос завершён!")
 ✅ подсказать, как правильно перенести foreign keys / автоинкремент
 
 Скажи, какой способ выбираешь?
+
+
+
+
+
+
+
+:: Проверка и установка Python с помощью BAT-скрипта
+@echo off
+setlocal
+
+set "PYTHON_EXE=python"
+
+:: Проверка наличия Python в PATH
+where %PYTHON_EXE% >nul 2>nul
+if %errorlevel% neq 0 (
+    echo Python не установлен или не найден в PATH.
+    echo Попытка установки...
+    :: Использование winget в BAT-скрипте
+    winget install Python.Python.3.12 --accept-source-agreements --accept-package-agreements
+    if %errorlevel% equ 0 (
+        echo Python успешно установлен через winget.
+        echo Для использования может потребоваться перезапуск CMD.
+    ) else (
+        echo Автоматическая установка через winget не удалась.
+        echo Пожалуйста, установите Python вручную с https://www.python.org/downloads/.
+    )
+) else (
+    echo Python уже установлен.
+    for /f "tokens=*" %%v in ('%PYTHON_EXE% -V 2^>^&1') do set "python_version=%%v"
+    echo Версия: %python_version%
+)
+
+endlocal
+pause
+
